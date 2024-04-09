@@ -12,6 +12,8 @@ public class RoundManager : MonoBehaviour
 
     public IntEvent ChangeDay = new IntEvent();
 
+    [SerializeField] private Casino casino;
+
     private int day = 0;
     public int Day
     {
@@ -26,5 +28,16 @@ public class RoundManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void EndDay()
+    {
+        casino.gameObject.SetActive(true);
+    }
+
+    public void StartDay()
+    {
+        casino.gameObject.SetActive(false);
+        Day += 1;
     }
 }

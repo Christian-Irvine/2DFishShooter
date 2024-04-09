@@ -7,9 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] private GameObject hub;   
-    [SerializeField] private GameObject shooting;   
-    [SerializeField] private GameObject midRoundCasino;   
-    [SerializeField] private GameObject postGameCasino;
+    [SerializeField] private GameObject game;   
 
     private void Awake()
     {
@@ -18,9 +16,18 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        StartHub();
+    }
+
+    public void StartHub()
+    {
         hub.SetActive(true);
-        shooting.SetActive(false);
-        midRoundCasino.SetActive(false);
-        postGameCasino.SetActive(false);
+        game.SetActive(false);
+    }
+
+    public void StartRound()
+    {
+        hub.SetActive(false);
+        game.SetActive(true);
     }
 }
