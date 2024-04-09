@@ -1,17 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
+
+[System.Serializable]
+public class FishSpawnWeight
+{
+    public Fish fishPrefab;
+    public int weight;
+}
 
 public class FishSpawner : MonoBehaviour
 {
     public static FishSpawner Instance;
-    private List<Fish> spawnedFish = new List<Fish>();
-    [SerializeField] private Fish fishPrefab;
 
     [SerializeField] private float dayLength;
-    private float spawnDelay = 1;
+    [SerializeField] private List<FishSpawnWeight> fishWeights;
 
+    private List<Fish> spawnedFish = new List<Fish>();
+
+    private int totalWeight = 0;
+    private float spawnDelay = 1;
     private bool spawningEnabled;
     public bool SpawningEnabled
     {
@@ -53,11 +63,30 @@ public class FishSpawner : MonoBehaviour
     {
         int direction = Random.Range(0, 2) == 0 ? -1 : 1;
 
-        Fish newFish = Instantiate(fishPrefab);
+        Fish newFish = Instantiate(PickFish());
         newFish.direction = direction;
+        newFish.transform.position = new Vector3 (10 * -direction, Random.Range(-4f, 4f), newFish.transform.position.z);
 
         spawnedFish.Add(newFish);
         newFish.RemoveFish.AddListener(RemoveFish);
+    }
+
+    private Fish PickFish()
+    {
+        int pickedWeight = Random.Range(0, totalWeight + 1);
+        int weightCount = 0;
+
+        foreach (FishSpawnWeight spawn in fishWeights)
+        {
+            weightCount += spawn.weight;
+            if (pickedWeight <= weightCount)
+            {
+                return spawn.fishPrefab;
+            }
+        }
+
+        Debug.LogWarning($"Picked number was above total weight. Picked:{pickedWeight}, weightCount:{weightCount}.");
+        return null;
     }
 
     public void RemoveFish(Fish fish)
@@ -68,6 +97,13 @@ public class FishSpawner : MonoBehaviour
 
     private void DayChange(int day)
     {
+        totalWeight = 0;
+
+        fishWeights.ForEach(fish =>
+        {
+            totalWeight += fish.weight;
+        });
+
         SpawningEnabled = true;
     }
 }
