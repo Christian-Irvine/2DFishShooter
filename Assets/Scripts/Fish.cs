@@ -33,4 +33,12 @@ public class Fish : MonoBehaviour
     {
         RemoveFish?.Invoke(this);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Despawner"))
+        {
+            FishSpawner.Instance.RemoveFish(this);
+        }
+    }
 }
