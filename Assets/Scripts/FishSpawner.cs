@@ -51,7 +51,11 @@ public class FishSpawner : MonoBehaviour
 
     private void SpawnFish()
     {
+        int direction = Random.Range(0, 2) == 0 ? -1 : 1;
+
         Fish newFish = Instantiate(fishPrefab);
+        newFish.direction = direction;
+
         spawnedFish.Add(newFish);
         newFish.RemoveFish.AddListener(RemoveFish);
     }

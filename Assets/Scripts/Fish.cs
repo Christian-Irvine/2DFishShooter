@@ -10,14 +10,18 @@ public class Fish : MonoBehaviour
 
     public FishEvent RemoveFish = new FishEvent();
 
+    [HideInInspector] public int direction;
+
+    [SerializeField] private float speed;
+
     void Start()
     {
-        
+        transform.localScale = new Vector3(transform.localScale.x * -direction, transform.localScale.y, transform.localScale.z);
     }
 
     void Update()
     {
-        
+        transform.position += Vector3.right * Time.deltaTime * speed * direction;
     }
 
     private void Die()
