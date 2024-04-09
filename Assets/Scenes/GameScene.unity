@@ -429,8 +429,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dbfa3752c2c6374999200e58d7eac57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishPrefab: {fileID: 874907232454924019, guid: b7be96cbda64fb94f896cd2bdcb710e4, type: 3}
   dayLength: 10
+  fishWeights:
+  - fishPrefab: {fileID: 874907232454924019, guid: b7be96cbda64fb94f896cd2bdcb710e4, type: 3}
+    weight: 4
+  - fishPrefab: {fileID: 6745100874886583020, guid: 8701b905f9da41345b3d5b5442472fbd, type: 3}
+    weight: 2
 --- !u!1 &1259636387
 GameObject:
   m_ObjectHideFlags: 0
