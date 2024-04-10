@@ -21,6 +21,9 @@ public class Fish : LivingObject
 
         float speedVariance = baseSpeed / 5;
         speed = Random.Range(baseSpeed - speedVariance, baseSpeed + speedVariance);
+
+        Death.AddListener(Die);
+        DespawnCollision.AddListener(LeaveSide);
     }
 
     void Update()
@@ -36,13 +39,5 @@ public class Fish : LivingObject
     private void LeaveSide()
     {
         RemoveFish?.Invoke(this);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Despawner"))
-        {
-            FishSpawner.Instance.RemoveFish(this);
-        }
     }
 }
