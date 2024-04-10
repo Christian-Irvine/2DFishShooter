@@ -486,6 +486,8 @@ MonoBehaviour:
     weight: 4
   - fishPrefab: {fileID: 6745100874886583020, guid: 8701b905f9da41345b3d5b5442472fbd, type: 3}
     weight: 2
+  - fishPrefab: {fileID: 5104105309287085244, guid: 283e1b9cd0839ac46b365bb48a66593e, type: 3}
+    weight: 3
 --- !u!1 &1259636387
 GameObject:
   m_ObjectHideFlags: 0
