@@ -15,7 +15,6 @@ public class FishSpawner : MonoBehaviour
 {
     public static FishSpawner Instance;
 
-    [SerializeField] private float dayLength;
     [SerializeField] private List<FishSpawnWeight> fishWeights;
 
     private List<Fish> spawnedFish = new List<Fish>();
@@ -40,8 +39,8 @@ public class FishSpawner : MonoBehaviour
 
     private void Start()
     {
-        RoundManager.Instance.ChangeDay.AddListener(DayChange);
-        RoundManager.Instance.Day = 0;
+        RunManager.Instance.ChangeDay.AddListener(DayChange);
+        RunManager.Instance.Day = 0;
     }
 
     IEnumerator SpawningLoop()
@@ -52,11 +51,11 @@ public class FishSpawner : MonoBehaviour
         {
             SpawnFish();
             yield return new WaitForSeconds(spawnDelay);
-            if (Time.time - startTime > dayLength) spawningEnabled = false;
+            if (Time.time - startTime > RunManager.Instance.dayLength) spawningEnabled = false;
         }
 
         yield return new WaitUntil(() => spawnedFish.Count == 0);
-        RoundManager.Instance.EndDay();
+        RunManager.Instance.EndDay();
     }
 
     private void SpawnFish()

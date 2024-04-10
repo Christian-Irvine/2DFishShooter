@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class RoundManager : MonoBehaviour
+public class RunManager : MonoBehaviour
 {
     //Round manager is for each playthrough before death, GameManager is for the game as a whole including the Hub.
-    public static RoundManager Instance;
+    public static RunManager Instance;
 
     public class IntEvent : UnityEvent<int> { }
 
     public IntEvent ChangeDay = new IntEvent();
 
+    public float dayLength;
     [SerializeField] private Casino casino;
 
     private int day = 0;

@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Fish : MonoBehaviour
+public class Fish : LivingObject
 {
     public class FishEvent : UnityEvent<Fish> { }
 
@@ -12,11 +12,15 @@ public class Fish : MonoBehaviour
 
     [HideInInspector] public int direction;
 
-    [SerializeField] private float speed;
+    [SerializeField] private float baseSpeed;
+    private float speed;
 
-    void Start()
+    protected override void OnStart()
     {
         transform.localScale = new Vector3(transform.localScale.x * -direction, transform.localScale.y, transform.localScale.z);
+
+        float speedVariance = baseSpeed / 5;
+        speed = Random.Range(baseSpeed - speedVariance, baseSpeed + speedVariance);
     }
 
     void Update()
