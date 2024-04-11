@@ -19,7 +19,7 @@ public class Gun : MonoBehaviour
 
     private void Start()
     {
-        bulletsInChamber = chamberSize;
+        RunManager.Instance.ChangeDay.AddListener(StartDay);
     }
 
     private void Update()
@@ -75,5 +75,10 @@ public class Gun : MonoBehaviour
         bulletsInChamber = chamberSize;
         Debug.Log("Reloaded!");
         Debug.Log($"Ammo: {bulletsInChamber}/{chamberSize}");
+    }
+
+    private void StartDay(int day)
+    {
+        bulletsInChamber = chamberSize;
     }
 }

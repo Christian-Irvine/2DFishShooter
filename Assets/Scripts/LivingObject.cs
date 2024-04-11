@@ -7,6 +7,7 @@ public class LivingObject : MonoBehaviour
 {   
     protected UnityEvent Death = new UnityEvent();
     protected UnityEvent DespawnCollision = new UnityEvent();
+    [SerializeField] private GameObject drop;
 
     private float health;
     public float Health
@@ -37,6 +38,8 @@ public class LivingObject : MonoBehaviour
     {
         if (health <= 0)
         {
+            if (drop != null) Instantiate(drop);
+
             Death?.Invoke();
         }
     }
