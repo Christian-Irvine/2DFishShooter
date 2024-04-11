@@ -40,7 +40,6 @@ public class FishSpawner : MonoBehaviour
     private void Start()
     {
         RunManager.Instance.ChangeDay.AddListener(DayChange);
-        RunManager.Instance.Day = 0;
     }
 
     IEnumerator SpawningLoop()
@@ -102,7 +101,5 @@ public class FishSpawner : MonoBehaviour
         {
             totalWeight += fish.weight;
         });
-
-        SpawningEnabled = true;
     }
 }

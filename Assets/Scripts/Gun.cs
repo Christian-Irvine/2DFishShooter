@@ -51,6 +51,21 @@ public class Gun : MonoBehaviour
         timeOfLastShot = Time.time;
         bulletsInChamber -= 1;
         Debug.Log($"Ammo: {bulletsInChamber}/{chamberSize}");
+
+        for (int shots = 1; shots <= spreadShotCount; shots++)
+        {
+            Vector3 rayPos = transform.position + new Vector3(Random.Range(-spreadRadius, spreadRadius), Random.Range(-spreadRadius, spreadRadius), 0);
+            RaycastHit2D hit = Physics2D.Raycast(rayPos, -Vector2.up);
+
+            if (hit.collider != null)
+            {
+                if (hit.collider.CompareTag("Fish"))
+                {
+                    LivingObject hitFish = hit.collider.GetComponent<LivingObject>();
+                    hitFish.Health -= bulletDamage;
+                }
+            }
+        }
     }
 
     IEnumerator Reload()

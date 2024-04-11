@@ -46,3 +46,9 @@ TagManager:
   - name: Fish
     uniqueID: 1639695009
     locked: 0
+  - name: Guns
+    uniqueID: 1108626531
+    locked: 0
+  - name: UI
+    uniqueID: 2290284631
+    locked: 0
