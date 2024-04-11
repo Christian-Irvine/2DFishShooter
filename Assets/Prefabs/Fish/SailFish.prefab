@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7119506668540391156}
   - component: {fileID: 5104105309287085244}
   - component: {fileID: 9147631569077768982}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SailFish
   m_TagString: Fish
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4041399052495307825}
   - component: {fileID: 4363507681258530364}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,6 +210,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3020139551741902340}
     m_Modifications:
+    - target: {fileID: 5146581762208029108, guid: 978dc4013e137794ebf4b169a0ef7e60, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6059812563110101025, guid: 978dc4013e137794ebf4b169a0ef7e60, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.081
@@ -253,6 +257,18 @@ PrefabInstance:
     - target: {fileID: 7358803818782232059, guid: 978dc4013e137794ebf4b169a0ef7e60, type: 3}
       propertyPath: m_Name
       value: HealthBarBackground
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358803818782232059, guid: 978dc4013e137794ebf4b169a0ef7e60, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725178449854970664, guid: 978dc4013e137794ebf4b169a0ef7e60, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8933795536196245641, guid: 978dc4013e137794ebf4b169a0ef7e60, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
