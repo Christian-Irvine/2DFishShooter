@@ -50,7 +50,7 @@ public class FishSpawner : MonoBehaviour
         {
             SpawnFish();
             yield return new WaitForSeconds(spawnDelay);
-            if (Time.time - startTime > RunManager.Instance.dayLength) spawningEnabled = false;
+            if (Time.time - startTime > RunManager.Instance.DayLength) spawningEnabled = false;
         }
 
         yield return new WaitUntil(() => spawnedFish.Count == 0);

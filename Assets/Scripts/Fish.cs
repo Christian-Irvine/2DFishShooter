@@ -12,12 +12,13 @@ public class Fish : LivingObject
 
     [HideInInspector] public int direction;
 
+    [SerializeField] private GameObject sprite;
     [SerializeField] private float baseSpeed;
     private float speed;
 
     protected override void OnStart()
     {
-        transform.localScale = new Vector3(transform.localScale.x * -direction, transform.localScale.y, transform.localScale.z);
+        sprite.transform.localScale = new Vector3(transform.localScale.x * -direction, transform.localScale.y, transform.localScale.z);
 
         float speedVariance = baseSpeed / 5;
         speed = Random.Range(baseSpeed - speedVariance, baseSpeed + speedVariance);

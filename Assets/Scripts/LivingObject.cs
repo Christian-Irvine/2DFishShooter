@@ -8,6 +8,11 @@ public class LivingObject : MonoBehaviour
     protected UnityEvent Death = new UnityEvent();
     protected UnityEvent DespawnCollision = new UnityEvent();
     [SerializeField] private GameObject drop;
+    [SerializeField] private GameObject healthBar;
+    [SerializeField] private GameObject healthBarMask;
+
+    [SerializeField] private float xPMultiplier;
+    public float XPMultiplier { get { return xPMultiplier; } }
 
     private float health;
     public float Health
@@ -17,6 +22,7 @@ public class LivingObject : MonoBehaviour
         { 
             health = value; 
             CheckDeath();
+            UpdateHealthBar();
         }
     }
 
@@ -29,6 +35,7 @@ public class LivingObject : MonoBehaviour
     protected void Start()
     {
         Health = MaxHealth;
+        healthBar.SetActive(false);
         OnStart();
     }
 
@@ -50,5 +57,11 @@ public class LivingObject : MonoBehaviour
         {
             DespawnCollision?.Invoke();
         }
+    }
+
+    private void UpdateHealthBar()
+    {
+        if (Health < MaxHealth) healthBar.SetActive(true);
+        healthBarMask.transform.localScale = new Vector3(Health / MaxHealth, 1, 1);
     }
 }

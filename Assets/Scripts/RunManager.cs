@@ -13,12 +13,22 @@ public class RunManager : MonoBehaviour
     public IntEvent ChangeDay = new IntEvent();
     public UnityEvent StartNewRun = new UnityEvent();
 
-    public float dayLength;
+
     [SerializeField] private float dayStartDelay;
 
     [SerializeField] private Casino casino;
     [SerializeField] private Store store;
+    [SerializeField] private GameObject playObjects;
 
+    [SerializeField] private float xP = 0;
+    public float XP
+    {
+        get { return xP; }
+        set { xP = value; }
+    }
+
+    [SerializeField] private float dayLength;
+    public float DayLength { get { return dayLength; } }
     [SerializeField] private int day = 0;
     public int Day
     {
@@ -51,7 +61,7 @@ public class RunManager : MonoBehaviour
     public void EndDay()
     {
         store.gameObject.SetActive(true);
-
+        playObjects.SetActive(false);
 
         //Remove this when store is made
         //store.gameObject.SetActive(false);
@@ -66,6 +76,8 @@ public class RunManager : MonoBehaviour
     public void StartNextDay()
     {
         store.gameObject.SetActive(false);
+        casino.gameObject.SetActive(false);
+        playObjects.SetActive(true);
         Day += 1;
         FishSpawner.Instance.SpawningEnabled = true;
     }

@@ -62,10 +62,18 @@ public class Gun : MonoBehaviour
                 if (hit.collider.CompareTag("Fish"))
                 {
                     LivingObject hitFish = hit.collider.GetComponent<LivingObject>();
+                    float distance =  Mathf.Abs(transform.position.x + transform.position.y - hitFish.transform.position.x + hitFish.transform.position.y);
+
+                    //The * 5 just keeps the XP at a reasonable number
+                    float xp = (hitFish.XPMultiplier / (distance * 5) * bulletDamage);
+                    RunManager.Instance.XP += xp;
+                    Debug.Log(xp);
                     hitFish.Health -= bulletDamage;
                 }
             }
         }
+
+        if (bulletsInChamber == 0) StartCoroutine(Reload());
     }
 
     IEnumerator Reload()
