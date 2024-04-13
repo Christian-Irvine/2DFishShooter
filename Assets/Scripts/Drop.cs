@@ -96,10 +96,7 @@ public class Drop : MonoBehaviour
 
     private void StopFalling()
     {
-        if (gameObject != null)
-        {
-            rb.isKinematic = true;
-            rb.velocity = Vector3.zero;
-        }
+        rb.isKinematic = true;
+        rb.velocity = Vector3.zero;
     }
 }

@@ -281,6 +281,9 @@ MonoBehaviour:
   CoinChange:
     m_PersistentCalls:
       m_Calls: []
+  DropsPickedUp:
+    m_PersistentCalls:
+      m_Calls: []
   dayStartDelay: 0
   casino: {fileID: 719358383}
   store: {fileID: 1919098602}
