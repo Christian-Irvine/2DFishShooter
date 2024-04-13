@@ -10,9 +10,12 @@ public class Fish : LivingObject
 
     public FishEvent RemoveFish = new FishEvent();
 
+    [HideInInspector] public int direction;
+
     [SerializeField] private GameObject sprite;
     [SerializeField] private float baseSpeed;
     private float speed;
+
 
     protected override void OnStart()
     {
@@ -23,6 +26,7 @@ public class Fish : LivingObject
 
         Death.AddListener(Die);
         DespawnCollision.AddListener(LeaveSide);
+        DropItem.AddListener(MoveDroppedItem);
     }
 
     void Update()
@@ -38,5 +42,10 @@ public class Fish : LivingObject
     private void LeaveSide()
     {
         RemoveFish?.Invoke(this);
+    }
+
+    private void MoveDroppedItem(Drop drop)
+    {
+        drop.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(12, 20) * direction, 0));
     }
 }

@@ -4,15 +4,16 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class LivingObject : MonoBehaviour
-{   
+{
+    public class DropEvent : UnityEvent<Drop> { }
+
     protected UnityEvent Death = new UnityEvent();
     protected UnityEvent DespawnCollision = new UnityEvent();
+    protected DropEvent DropItem = new DropEvent();
     [SerializeField] private GameObject drop;
     [SerializeField] private Vector2Int dropChance = new Vector2Int(1, 1);
     [SerializeField] private GameObject healthBar;
     [SerializeField] private GameObject healthBarMask;
-
-    [HideInInspector] public int direction;
 
     [SerializeField] private float xPMultiplier;
     public float XPMultiplier { get { return xPMultiplier; } }
@@ -52,7 +53,7 @@ public class LivingObject : MonoBehaviour
             {
                 for (int i = 0; i < Random.Range(dropChance.x, dropChance.y + 1); i++)
                 {
-                    Instantiate(drop, transform.position, Quaternion.identity).GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(12, 20) * direction, 0));
+                    DropItem?.Invoke(Instantiate(drop, transform.position, Quaternion.identity).GetComponent<Drop>()); 
                 }
             }
                
