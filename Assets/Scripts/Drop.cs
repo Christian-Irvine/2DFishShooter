@@ -12,22 +12,39 @@ public enum DropType
 public class Drop : MonoBehaviour
 {
     [SerializeField] private DropType droptype;
+    [SerializeField] private float pickupDelay;
+    private float spawnTime;
     private Rigidbody2D rb;
     private float ground;
 
     private void Awake()
     {
+        spawnTime = Time.time;
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
     {
-        rb.AddForce(new Vector2(Random.Range(-11, 11), Random.Range(8f, 11f)));
         ground = Random.Range(-3.5f, -4.5f);
+        rb.AddForce(new Vector2(0, Random.Range(-8f, 18f)));
     }
 
     private void Update()
     {
-        if (transform.position.y <= ground) rb.simulated = false;
+        if (transform.position.y <= ground)
+        {
+            rb.isKinematic = true;
+            rb.velocity = Vector3.zero;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (Time.time - spawnTime < pickupDelay) return;
+
+        if (collision.gameObject.CompareTag("Crosshair"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

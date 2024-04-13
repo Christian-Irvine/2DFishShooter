@@ -10,8 +10,6 @@ public class Fish : LivingObject
 
     public FishEvent RemoveFish = new FishEvent();
 
-    [HideInInspector] public int direction;
-
     [SerializeField] private GameObject sprite;
     [SerializeField] private float baseSpeed;
     private float speed;

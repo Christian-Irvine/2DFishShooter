@@ -167,7 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92fd9c71cdb78b24fa49120619c9f376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drop: {fileID: 0}
+  drop: {fileID: 8746508500733073776, guid: adc6aa1e62cf9ae418d40af5de534982, type: 3}
+  dropChance: {x: 2, y: 2}
   healthBar: {fileID: 3350363084751418380}
   healthBarMask: {fileID: 1084537055026143299}
   xPMultiplier: 6
@@ -189,8 +190,8 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

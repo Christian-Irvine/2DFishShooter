@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Despawner
   - Fish
+  - Crosshair
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - UI
   - Fish
   - Drop
-  - 
+  - Crosshair
   - 
   - 
   - 

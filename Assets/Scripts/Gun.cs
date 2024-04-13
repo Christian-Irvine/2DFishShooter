@@ -13,6 +13,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private float reloadTime;
     [SerializeField] private int chamberSize;
     [SerializeField] private float cooldown;
+
+    [SerializeField] private LayerMask layerMask;
     private float timeOfLastShot;
     private bool mouseDown;
     private int bulletsInChamber;
@@ -55,10 +57,12 @@ public class Gun : MonoBehaviour
         for (int shots = 1; shots <= spreadShotCount; shots++)
         {
             Vector3 rayPos = transform.position + new Vector3(Random.Range(-spreadRadius, spreadRadius), Random.Range(-spreadRadius, spreadRadius), 0);
-            RaycastHit2D hit = Physics2D.Raycast(rayPos, -Vector2.up);
+            RaycastHit2D hit = Physics2D.Raycast(rayPos, -Vector2.up, 15, layerMask);
 
             if (hit.collider != null)
             {
+                Debug.Log(hit.collider.tag);
+
                 if (hit.collider.CompareTag("Fish"))
                 {
                     LivingObject hitFish = hit.collider.GetComponent<LivingObject>();
@@ -67,7 +71,6 @@ public class Gun : MonoBehaviour
                     //The * 5 just keeps the XP at a reasonable number
                     float xp = (hitFish.XPMultiplier / (distance * 5) * bulletDamage);
                     RunManager.Instance.XP += xp;
-                    Debug.Log(xp);
                     hitFish.Health -= bulletDamage;
                 }
             }
