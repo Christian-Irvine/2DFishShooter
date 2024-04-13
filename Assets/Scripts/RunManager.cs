@@ -14,6 +14,7 @@ public class RunManager : MonoBehaviour
     public UnityEvent EndDay = new UnityEvent();
     public UnityEvent StartNewRun = new UnityEvent();
     public UnityEvent CoinChange = new UnityEvent();
+    public UnityEvent DropsPickedUp = new UnityEvent();
 
     [SerializeField] private float dayStartDelay;
 
@@ -58,6 +59,11 @@ public class RunManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        DropsPickedUp.AddListener(OpenStore);
+    }
+
     private void OnEnable()
     {
         StartCoroutine(StartRun());
@@ -74,8 +80,6 @@ public class RunManager : MonoBehaviour
     public void EndCurrentDay()
     {
         EndDay?.Invoke();
-        store.gameObject.SetActive(true);
-        playObjects.SetActive(false);
     }
 
     public void EndRun()
@@ -90,6 +94,12 @@ public class RunManager : MonoBehaviour
         playObjects.SetActive(true);
         Day += 1;
         FishSpawner.Instance.SpawningEnabled = true;
+    }
+
+    public void OpenStore()
+    {
+        store.gameObject.SetActive(true);
+        playObjects.SetActive(false);
     }
 
     private void Reset()

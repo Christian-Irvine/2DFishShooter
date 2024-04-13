@@ -17,6 +17,7 @@ public class Drop : MonoBehaviour
     private float spawnTime;
     private Rigidbody2D rb;
     private float ground;
+    private bool pickedUp = false;
 
     private void Awake()
     {
@@ -40,6 +41,8 @@ public class Drop : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (pickedUp) return;
+
         if (Time.time - spawnTime < pickupDelay) return;
 
         if (collision.gameObject.CompareTag("Crosshair"))
@@ -65,6 +68,10 @@ public class Drop : MonoBehaviour
 
     public IEnumerator PickupDrop(Vector3 movePos, float pickupDelay)
     {
+        if (pickedUp) yield break;
+
+        pickedUp = true;
+
         yield return new WaitForSeconds(pickupDelay);
 
         StopFalling();
@@ -84,13 +91,15 @@ public class Drop : MonoBehaviour
                 break;
         }
 
-        
         Destroy(gameObject);
     }
 
     private void StopFalling()
     {
-        rb.isKinematic = true;
-        rb.velocity = Vector3.zero;
+        if (gameObject != null)
+        {
+            rb.isKinematic = true;
+            rb.velocity = Vector3.zero;
+        }
     }
 }

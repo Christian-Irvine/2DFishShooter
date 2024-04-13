@@ -36,5 +36,8 @@ public class DropManager : MonoBehaviour
         {
             StartCoroutine(coin.PickupDrop(coinPickupLocation.position, Random.Range(0, 1.5f)));
         }
+
+        yield return new WaitUntil(() => droppedCoins.Count == 0);
+        RunManager.Instance.DropsPickedUp?.Invoke();
     }
 }
