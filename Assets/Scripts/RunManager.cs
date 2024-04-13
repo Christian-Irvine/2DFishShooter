@@ -11,8 +11,9 @@ public class RunManager : MonoBehaviour
     public class IntEvent : UnityEvent<int> { }
 
     public IntEvent ChangeDay = new IntEvent();
+    public UnityEvent EndDay = new UnityEvent();
     public UnityEvent StartNewRun = new UnityEvent();
-
+    public UnityEvent CoinChange = new UnityEvent();
 
     [SerializeField] private float dayStartDelay;
 
@@ -27,6 +28,18 @@ public class RunManager : MonoBehaviour
         set { xP = value; }
     }
 
+    [SerializeField] private int coins = 0;
+    public int Coins
+    {
+        get { return coins; }
+        set 
+        { 
+            coins = value;
+            CoinChange?.Invoke();
+        }
+    }
+
+
     [SerializeField] private float dayLength;
     public float DayLength { get { return dayLength; } }
     [SerializeField] private int day = 0;
@@ -36,7 +49,6 @@ public class RunManager : MonoBehaviour
         set 
         { 
             day = value;
-            Debug.Log("Day Time");
             ChangeDay?.Invoke(Day);
         }
     }
@@ -53,19 +65,17 @@ public class RunManager : MonoBehaviour
 
     public IEnumerator StartRun()
     {
+        Reset();
         yield return new WaitForSeconds(dayStartDelay);
         StartNewRun?.Invoke();
         StartNextDay();
     }
 
-    public void EndDay()
+    public void EndCurrentDay()
     {
+        EndDay?.Invoke();
         store.gameObject.SetActive(true);
         playObjects.SetActive(false);
-
-        //Remove this when store is made
-        //store.gameObject.SetActive(false);
-        //StartCoroutine(StartNextDay());
     }
 
     public void EndRun()
@@ -80,5 +90,12 @@ public class RunManager : MonoBehaviour
         playObjects.SetActive(true);
         Day += 1;
         FishSpawner.Instance.SpawningEnabled = true;
+    }
+
+    private void Reset()
+    {
+        XP = 0;
+        Coins = 0;
+        Day = 0;
     }
 }

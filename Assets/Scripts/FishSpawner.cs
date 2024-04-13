@@ -54,7 +54,7 @@ public class FishSpawner : MonoBehaviour
         }
 
         yield return new WaitUntil(() => spawnedFish.Count == 0);
-        RunManager.Instance.EndDay();
+        RunManager.Instance.EndCurrentDay();
     }
 
     private void SpawnFish()

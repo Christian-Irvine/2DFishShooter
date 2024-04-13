@@ -53,7 +53,10 @@ public class LivingObject : MonoBehaviour
             {
                 for (int i = 0; i < Random.Range(dropChance.x, dropChance.y + 1); i++)
                 {
-                    DropItem?.Invoke(Instantiate(drop, transform.position, Quaternion.identity).GetComponent<Drop>()); 
+                    Drop droppedCoin = Instantiate(drop, transform.position, Quaternion.identity).GetComponent<Drop>();
+                    DropManager.Instance.droppedCoins.Add(droppedCoin);
+
+                    DropItem?.Invoke(droppedCoin); 
                 }
             }
                

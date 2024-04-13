@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &108482144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 108482145}
+  m_Layer: 0
+  m_Name: GunPickupPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &108482145
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108482144}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.39, y: 4.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 204583858}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &195069136
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,6 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 204583858}
   - component: {fileID: 204583859}
+  - component: {fileID: 204583860}
   m_Layer: 0
   m_Name: RunManager
   m_TagString: Untagged
@@ -224,6 +256,8 @@ Transform:
   - {fileID: 719358382}
   - {fileID: 1919098601}
   - {fileID: 228342882}
+  - {fileID: 2130564824}
+  - {fileID: 108482145}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &204583859
@@ -238,7 +272,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27222ebae5611ad4589bc308a6bc85ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EndDay:
+    m_PersistentCalls:
+      m_Calls: []
   StartNewRun:
+    m_PersistentCalls:
+      m_Calls: []
+  CoinChange:
     m_PersistentCalls:
       m_Calls: []
   dayStartDelay: 0
@@ -246,8 +286,26 @@ MonoBehaviour:
   store: {fileID: 1919098602}
   playObjects: {fileID: 228342881}
   xP: 0
+  coins: 0
   dayLength: 10
   day: 0
+--- !u!114 &204583860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204583857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d92ebc4628e26d64b8c05ce982bcf288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedCoins: []
+  coinPickupCooldown: 0
+  coinPickupLocation: {fileID: 2130564824}
+  gunPickupLocation: {fileID: 108482145}
+  dropPickupSpeed: 10
 --- !u!1 &228342881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,6 +1463,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb5f3b05e9d0c64cb3fe43c2e3a8a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2130564823
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2130564824}
+  m_Layer: 0
+  m_Name: CoinPickupPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2130564824
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130564823}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.33, y: 4.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 204583858}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2125482835853051120
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ public class Fish : LivingObject
 
         Death.AddListener(Die);
         DespawnCollision.AddListener(LeaveSide);
-        DropItem.AddListener(MoveDroppedItem);
+        DropItem.AddListener(ApplyDropHorizontalVelocity);
     }
 
     void Update()
@@ -44,8 +44,8 @@ public class Fish : LivingObject
         RemoveFish?.Invoke(this);
     }
 
-    private void MoveDroppedItem(Drop drop)
+    private void ApplyDropHorizontalVelocity(Drop drop)
     {
-        drop.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(12, 20) * direction, 0));
+        drop.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(15, 25) * direction, 0));
     }
 }

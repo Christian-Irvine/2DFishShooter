@@ -13,6 +13,7 @@ public class Drop : MonoBehaviour
 {
     [SerializeField] private DropType droptype;
     [SerializeField] private float pickupDelay;
+    [SerializeField] private float pickupSpeed;
     private float spawnTime;
     private Rigidbody2D rb;
     private float ground;
@@ -26,15 +27,14 @@ public class Drop : MonoBehaviour
     private void Start()
     {
         ground = Random.Range(-3.5f, -4.5f);
-        rb.AddForce(new Vector2(0, Random.Range(-8f, 18f)));
+        rb.AddForce(new Vector2(Random.Range(-2, 2), Random.Range(-8f, 18f)));
     }
 
     private void Update()
     {
         if (transform.position.y <= ground)
         {
-            rb.isKinematic = true;
-            rb.velocity = Vector3.zero;
+            StopFalling();
         }
     }
 
@@ -44,7 +44,53 @@ public class Drop : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Crosshair"))
         {
-            Destroy(gameObject);
+            Vector3 pos;
+
+            switch (droptype)
+            {
+                case DropType.Coin:
+                    pos = DropManager.Instance.coinPickupLocation.position;
+                    break;
+                case DropType.Gun:
+                    pos = DropManager.Instance.gunPickupLocation.position;
+                    break;
+                default: 
+                    pos = Vector3.zero; 
+                    break;
+            }
+
+            StartCoroutine(PickupDrop(pos, 0));
         }
+    }
+
+    public IEnumerator PickupDrop(Vector3 movePos, float pickupDelay)
+    {
+        yield return new WaitForSeconds(pickupDelay);
+
+        StopFalling();
+
+        while (transform.position != movePos)
+        {
+            yield return new WaitForEndOfFrame();
+
+            transform.position = Vector3.MoveTowards(transform.position, movePos, DropManager.Instance.dropPickupSpeed * Time.deltaTime);
+        }
+
+        switch (droptype)
+        {
+            case DropType.Coin:
+                DropManager.Instance.droppedCoins.Remove(this);
+                RunManager.Instance.Coins++;
+                break;
+        }
+
+        
+        Destroy(gameObject);
+    }
+
+    private void StopFalling()
+    {
+        rb.isKinematic = true;
+        rb.velocity = Vector3.zero;
     }
 }
