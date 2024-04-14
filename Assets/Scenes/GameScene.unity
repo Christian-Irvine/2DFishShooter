@@ -306,9 +306,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   droppedCoins: []
   coinPickupCooldown: 0
+  postRoundBaseCoinPickupDelay: 0.05
   coinPickupLocation: {fileID: 2130564824}
   gunPickupLocation: {fileID: 108482145}
-  dropPickupSpeed: 10
+  dropPickupSpeed: 25
 --- !u!1 &228342881
 GameObject:
   m_ObjectHideFlags: 0

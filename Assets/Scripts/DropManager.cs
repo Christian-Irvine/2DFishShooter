@@ -9,6 +9,7 @@ public class DropManager : MonoBehaviour
 
     [HideInInspector] public List<Drop> droppedCoins = new List<Drop>();
     [SerializeField] private float coinPickupCooldown;
+    [SerializeField] private float postRoundBaseCoinPickupDelay;
     public Transform coinPickupLocation;
     public Transform gunPickupLocation;
     public float dropPickupSpeed;
@@ -34,7 +35,7 @@ public class DropManager : MonoBehaviour
 
         foreach (Drop coin in droppedCoins.ToList())
         {
-            StartCoroutine(coin.PickupDrop(coinPickupLocation.position, Random.Range(0, 1.5f)));
+            StartCoroutine(coin.PickupDrop(coinPickupLocation.position, Random.Range(0, Mathf.Clamp(postRoundBaseCoinPickupDelay * droppedCoins.Count, 0, 2.5f))));
         }
 
         yield return new WaitUntil(() => droppedCoins.Count == 0);
