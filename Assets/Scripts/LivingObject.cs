@@ -49,19 +49,26 @@ public class LivingObject : MonoBehaviour
     {
         if (health <= 0)
         {
-            if (drop != null)
-            {
-                for (int i = 0; i < Random.Range(dropChance.x, dropChance.y + 1); i++)
-                {
-                    Drop droppedCoin = Instantiate(drop, transform.position, Quaternion.identity).GetComponent<Drop>();
-                    DropManager.Instance.droppedCoins.Add(droppedCoin);
-
-                    DropItem?.Invoke(droppedCoin); 
-                }
-            }
-               
-            Death?.Invoke();
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        if (drop != null)
+        {
+            for (int i = 0; i < Random.Range(dropChance.x, dropChance.y + 1); i++)
+            {
+                Drop droppedCoin = Instantiate(drop, transform.position, Quaternion.identity).GetComponent<Drop>();
+                DropManager.Instance.droppedCoins.Add(droppedCoin);
+
+                DropItem?.Invoke(droppedCoin);
+            }
+        }
+
+        BubbleManager.Instance.SpawnRandomBubble(transform.position);
+
+        Death?.Invoke();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

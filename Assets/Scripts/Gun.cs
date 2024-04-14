@@ -79,7 +79,6 @@ public class Gun : MonoBehaviour
 
     IEnumerator Reload()
     {
-        Debug.Log("Reloading...");
         yield return new WaitForSeconds(reloadTime);
         bulletsInChamber = chamberSize;
         Debug.Log("Reloaded!");

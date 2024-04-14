@@ -341,6 +341,7 @@ Transform:
   m_Children:
   - {fileID: 1255525032}
   - {fileID: 1188685879}
+  - {fileID: 642274967}
   - {fileID: 2130564824}
   - {fileID: 108482145}
   m_Father: {fileID: 204583858}
@@ -494,6 +495,58 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3460058859108436551, guid: 1a46bae68ae366a4a9c081def36f7d90, type: 3}
   m_PrefabInstance: {fileID: 2125482835853051120}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &642274966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 642274967}
+  - component: {fileID: 642274968}
+  m_Layer: 0
+  m_Name: BubbleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &642274967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642274966}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 228342882}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &642274968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642274966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e2b8dd161802aa48a6353e86f5938f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubblePrefab: {fileID: 3090288683997307680, guid: 0a0a802fbde069245a12c0c9473618dc, type: 3}
+  bubbleSprites:
+  - frames:
+    - {fileID: -258943308, guid: 105e24020d9e4ea40858f2ec45a45336, type: 3}
+    - {fileID: 1160289768, guid: 105e24020d9e4ea40858f2ec45a45336, type: 3}
+    - {fileID: -1253221174, guid: 105e24020d9e4ea40858f2ec45a45336, type: 3}
+    - {fileID: 954116104, guid: 105e24020d9e4ea40858f2ec45a45336, type: 3}
+  bubbles: []
 --- !u!1 &719358381
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,23 +908,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dbfa3752c2c6374999200e58d7eac57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentFishWeights:
+  fishSpawnWeights:
   - weekWeights:
     - fishPrefab: {fileID: 874907232454924019, guid: b7be96cbda64fb94f896cd2bdcb710e4, type: 3}
       weight: 12
-    - fishPrefab: {fileID: 6745100874886583020, guid: 8701b905f9da41345b3d5b5442472fbd, type: 3}
-      weight: 6
     - fishPrefab: {fileID: 5104105309287085244, guid: 283e1b9cd0839ac46b365bb48a66593e, type: 3}
       weight: 7
-  - weekWeights:
-    - fishPrefab: {fileID: 874907232454924019, guid: b7be96cbda64fb94f896cd2bdcb710e4, type: 3}
-      weight: 12
-  - weekWeights:
-    - fishPrefab: {fileID: 874907232454924019, guid: b7be96cbda64fb94f896cd2bdcb710e4, type: 3}
-      weight: 12
-  - weekWeights:
-    - fishPrefab: {fileID: 874907232454924019, guid: b7be96cbda64fb94f896cd2bdcb710e4, type: 3}
-      weight: 12
+    - fishPrefab: {fileID: 6745100874886583020, guid: 8701b905f9da41345b3d5b5442472fbd, type: 3}
+      weight: 5
   - weekWeights:
     - fishPrefab: {fileID: 874907232454924019, guid: b7be96cbda64fb94f896cd2bdcb710e4, type: 3}
       weight: 12
