@@ -29,7 +29,7 @@ public class BubbleManager : MonoBehaviour
 
     public void SpawnRandomBubble(Vector2 position)
     {
-        Bubble newBubble = Instantiate(bubblePrefab, position, Quaternion.identity);
+        Bubble newBubble = Instantiate(bubblePrefab, position, Quaternion.identity, transform);
 
         int index = Random.Range(0, bubbleSprites.Count);
 

@@ -17,9 +17,12 @@ public class Bubble : MonoBehaviour
 
     private void Start()
     {
-        rb.AddForce(new Vector2(Random.value * 5 - 1, Random.value * 5));
+        //float horizontalForce = Random.Range(7f, 12f) * Random.Range(0, 2) == 0? 1 : -1;
+        float horizontalForce = Random.Range(-12f, 12f);
+        rb.AddForce(new Vector2(horizontalForce, Random.value * 8));
+
         BubbleManager.Instance.bubbles.Remove(this);
-        StartCoroutine(PopAnimation(Random.Range(1.5f, 3.5f)));
+        StartCoroutine(PopAnimation(Random.Range(0.5f, 1.5f)));
     }
 
     public void Pop()

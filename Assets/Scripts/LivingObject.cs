@@ -59,14 +59,19 @@ public class LivingObject : MonoBehaviour
         {
             for (int i = 0; i < Random.Range(dropChance.x, dropChance.y + 1); i++)
             {
-                Drop droppedCoin = Instantiate(drop, transform.position, Quaternion.identity).GetComponent<Drop>();
+                Drop droppedCoin = Instantiate(drop, transform.position, Quaternion.identity, DropManager.Instance.transform).GetComponent<Drop>();
                 DropManager.Instance.droppedCoins.Add(droppedCoin);
 
                 DropItem?.Invoke(droppedCoin);
             }
         }
 
-        BubbleManager.Instance.SpawnRandomBubble(transform.position);
+        for (int i = 0; i < Random.Range(1, 4); i++)
+        {
+            BubbleManager.Instance.SpawnRandomBubble(transform.position);
+        }
+
+        
 
         Death?.Invoke();
     }

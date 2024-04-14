@@ -70,7 +70,7 @@ public class FishSpawner : MonoBehaviour
     {
         int direction = Random.Range(0, 2) == 0 ? -1 : 1;
 
-        Fish newFish = Instantiate(PickFish());
+        Fish newFish = Instantiate(PickFish(), transform);
         newFish.direction = direction;
         newFish.transform.position = new Vector3 (10 * -direction, Random.Range(-4f, 4f), newFish.transform.position.z);
 

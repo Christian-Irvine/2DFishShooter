@@ -82,7 +82,6 @@ public class Gun : MonoBehaviour
         yield return new WaitForSeconds(reloadTime);
         bulletsInChamber = chamberSize;
         Debug.Log("Reloaded!");
-        Debug.Log($"Ammo: {bulletsInChamber}/{chamberSize}");
     }
 
     private void StartDay(int day)
