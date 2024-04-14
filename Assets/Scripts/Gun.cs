@@ -52,7 +52,7 @@ public class Gun : MonoBehaviour
     {
         timeOfLastShot = Time.time;
         bulletsInChamber -= 1;
-        Debug.Log($"Ammo: {bulletsInChamber}/{chamberSize}");
+        //Debug.Log($"Ammo: {bulletsInChamber}/{chamberSize}");
 
         for (int shots = 1; shots <= spreadShotCount; shots++)
         {
@@ -61,8 +61,6 @@ public class Gun : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Debug.Log(hit.collider.tag);
-
                 if (hit.collider.CompareTag("Fish"))
                 {
                     LivingObject hitFish = hit.collider.GetComponent<LivingObject>();

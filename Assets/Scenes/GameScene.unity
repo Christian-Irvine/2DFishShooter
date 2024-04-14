@@ -147,12 +147,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 108482144}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 8.39, y: 4.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 204583858}
+  m_Father: {fileID: 228342882}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &195069136
 GameObject:
@@ -256,8 +256,6 @@ Transform:
   - {fileID: 719358382}
   - {fileID: 1919098601}
   - {fileID: 228342882}
-  - {fileID: 2130564824}
-  - {fileID: 108482145}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &204583859
@@ -285,9 +283,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   dayStartDelay: 0
+  daysInWeek: 5
   casino: {fileID: 719358383}
   store: {fileID: 1919098602}
   playObjects: {fileID: 228342881}
+  week: 0
   xP: 0
   coins: 0
   dayLength: 10
@@ -340,8 +340,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1255525032}
-  - {fileID: 889348109}
   - {fileID: 1188685879}
+  - {fileID: 2130564824}
+  - {fileID: 108482145}
   m_Father: {fileID: 204583858}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &267024110
@@ -670,7 +671,7 @@ Transform:
   m_Children:
   - {fileID: 1286316533}
   - {fileID: 1549613058}
-  m_Father: {fileID: 228342882}
+  m_Father: {fileID: 1188685879}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1147582589
 GameObject:
@@ -838,7 +839,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 889348109}
   m_Father: {fileID: 228342882}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1188685880
@@ -853,13 +855,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dbfa3752c2c6374999200e58d7eac57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishWeights:
-  - fishPrefab: {fileID: 874907232454924019, guid: b7be96cbda64fb94f896cd2bdcb710e4, type: 3}
-    weight: 4
-  - fishPrefab: {fileID: 6745100874886583020, guid: 8701b905f9da41345b3d5b5442472fbd, type: 3}
-    weight: 2
-  - fishPrefab: {fileID: 5104105309287085244, guid: 283e1b9cd0839ac46b365bb48a66593e, type: 3}
-    weight: 3
+  currentFishWeights:
+  - weekWeights:
+    - fishPrefab: {fileID: 874907232454924019, guid: b7be96cbda64fb94f896cd2bdcb710e4, type: 3}
+      weight: 12
+    - fishPrefab: {fileID: 6745100874886583020, guid: 8701b905f9da41345b3d5b5442472fbd, type: 3}
+      weight: 6
+    - fishPrefab: {fileID: 5104105309287085244, guid: 283e1b9cd0839ac46b365bb48a66593e, type: 3}
+      weight: 7
+  - weekWeights:
+    - fishPrefab: {fileID: 874907232454924019, guid: b7be96cbda64fb94f896cd2bdcb710e4, type: 3}
+      weight: 12
+  - weekWeights:
+    - fishPrefab: {fileID: 874907232454924019, guid: b7be96cbda64fb94f896cd2bdcb710e4, type: 3}
+      weight: 12
+  - weekWeights:
+    - fishPrefab: {fileID: 874907232454924019, guid: b7be96cbda64fb94f896cd2bdcb710e4, type: 3}
+      weight: 12
+  - weekWeights:
+    - fishPrefab: {fileID: 874907232454924019, guid: b7be96cbda64fb94f896cd2bdcb710e4, type: 3}
+      weight: 12
 --- !u!1 &1255525030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1491,12 +1506,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130564823}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 8.33, y: 4.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 204583858}
+  m_Father: {fileID: 228342882}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2125482835853051120
 PrefabInstance:

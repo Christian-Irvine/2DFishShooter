@@ -11,11 +11,19 @@ public class FishSpawnWeight
     public int weight;
 }
 
+[System.Serializable]
+public class FishWeekSpawns
+{
+    public List<FishSpawnWeight> weekWeights;
+}
+
 public class FishSpawner : MonoBehaviour
 {
     public static FishSpawner Instance;
 
-    [SerializeField] private List<FishSpawnWeight> fishWeights;
+    [SerializeField] 
+
+    private List<FishWeekSpawns> fishSpawnWeights;
 
     private List<Fish> spawnedFish = new List<Fish>();
 
@@ -40,6 +48,7 @@ public class FishSpawner : MonoBehaviour
     private void Start()
     {
         RunManager.Instance.ChangeDay.AddListener(DayChange);
+        RunManager.Instance.ChangeWeek.AddListener(WeekChange);
     }
 
     IEnumerator SpawningLoop()
@@ -74,7 +83,7 @@ public class FishSpawner : MonoBehaviour
         int pickedWeight = Random.Range(0, totalWeight + 1);
         int weightCount = 0;
 
-        foreach (FishSpawnWeight spawn in fishWeights)
+        foreach (FishSpawnWeight spawn in fishSpawnWeights[GetSpawnWeekIndex()].weekWeights)
         {
             weightCount += spawn.weight;
             if (pickedWeight <= weightCount)
@@ -97,9 +106,20 @@ public class FishSpawner : MonoBehaviour
     {
         totalWeight = 0;
 
-        fishWeights.ForEach(fish =>
+        fishSpawnWeights[GetSpawnWeekIndex()].weekWeights.ForEach(fish =>
         {
             totalWeight += fish.weight;
         });
+    }
+
+    private void WeekChange(int week)
+    {
+        Debug.Log(week);
+    }
+
+    private int GetSpawnWeekIndex()
+    {
+        if (fishSpawnWeights.Count == 0) Debug.LogWarning("No Fish Weights Exist!");
+        return Mathf.Min(RunManager.Instance.Week - 1, fishSpawnWeights.Count - 1);
     }
 }

@@ -11,16 +11,29 @@ public class RunManager : MonoBehaviour
     public class IntEvent : UnityEvent<int> { }
 
     public IntEvent ChangeDay = new IntEvent();
+    public IntEvent ChangeWeek = new IntEvent();
     public UnityEvent EndDay = new UnityEvent();
     public UnityEvent StartNewRun = new UnityEvent();
     public UnityEvent CoinChange = new UnityEvent();
     public UnityEvent DropsPickedUp = new UnityEvent();
 
     [SerializeField] private float dayStartDelay;
+    [SerializeField] private int daysInWeek;
 
     [SerializeField] private Casino casino;
     [SerializeField] private Store store;
     [SerializeField] private GameObject playObjects;
+
+    [SerializeField] private int week;
+    public int Week
+    {
+        get { return week; }
+        set 
+        { 
+            week = value;
+            ChangeWeek?.Invoke(Week);
+        }
+    }
 
     [SerializeField] private float xP = 0;
     public float XP
@@ -50,6 +63,10 @@ public class RunManager : MonoBehaviour
         set 
         { 
             day = value;
+
+            int newWeek = Mathf.FloorToInt((day - 1) / daysInWeek) + 1;
+            if (Week != newWeek) Week = newWeek;
+
             ChangeDay?.Invoke(Day);
         }
     }
