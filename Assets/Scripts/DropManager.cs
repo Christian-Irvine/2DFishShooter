@@ -45,7 +45,6 @@ public class DropManager : MonoBehaviour
 
     private void DeleteAllDrops()
     {
-        Debug.Log("Hehehaha");
         droppedCoins.ForEach(coin =>
         {
             Destroy(coin.gameObject);

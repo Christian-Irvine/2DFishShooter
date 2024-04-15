@@ -57,7 +57,7 @@ public class Gun : MonoBehaviour
         for (int shots = 1; shots <= spreadShotCount; shots++)
         {
             Vector3 rayPos = transform.position + new Vector3(Random.Range(-spreadRadius, spreadRadius), Random.Range(-spreadRadius, spreadRadius), 0);
-            RaycastHit2D hit = Physics2D.Raycast(rayPos, -Vector2.up, 15, layerMask);
+            RaycastHit2D hit = Physics2D.Raycast(rayPos, -Vector2.zero, Mathf.Infinity, layerMask);
 
             if (hit.collider != null)
             {
