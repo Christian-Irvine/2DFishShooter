@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1639695009
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -185628589, guid: db1ba9f1498f9154bb129bdf0265a9df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -188,6 +188,8 @@ MonoBehaviour:
   dropChance: {x: 2, y: 2}
   healthBar: {fileID: 3350363084751418380}
   healthBarMask: {fileID: 1084537055026143299}
+  rageRemovedOnDeath: 0.2
+  rageAddedOnEscape: 1
   xPMultiplier: 6
   maxHealth: 5
   direction: 0

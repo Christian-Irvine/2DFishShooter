@@ -44,11 +44,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Bubbles
-    uniqueID: 2846574963
-    locked: 0
   - name: Drops
     uniqueID: 889574615
+    locked: 0
+  - name: Bubbles
+    uniqueID: 2846574963
     locked: 0
   - name: Fish
     uniqueID: 1639695009

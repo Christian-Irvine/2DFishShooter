@@ -29,7 +29,7 @@ public class BubbleManager : MonoBehaviour
 
     public void SpawnRandomBubble(Vector2 position)
     {
-        Bubble newBubble = Instantiate(bubblePrefab, position, Quaternion.identity, transform);
+        Bubble newBubble = Instantiate(bubblePrefab, position, Quaternion.identity, SpawnedObjectsManager.Instance.transform);
 
         int index = Random.Range(0, bubbleSprites.Count);
 
@@ -48,7 +48,7 @@ public class BubbleManager : MonoBehaviour
     {
         foreach (Bubble bubble in bubbles) 
         {
-            StartCoroutine(PopBubble(bubble, Random.value * 1.5f));
+            StartCoroutine(PopBubble(bubble, Random.value * 0.8f));
         }
     }
 

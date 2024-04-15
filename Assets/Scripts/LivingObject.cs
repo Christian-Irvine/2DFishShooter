@@ -15,6 +15,9 @@ public class LivingObject : MonoBehaviour
     [SerializeField] private GameObject healthBar;
     [SerializeField] private GameObject healthBarMask;
 
+    [SerializeField] private float rageRemovedOnDeath = 0.2f;
+    [SerializeField] private float rageAddedOnEscape = 1f;
+
     [SerializeField] private float xPMultiplier;
     public float XPMultiplier { get { return xPMultiplier; } }
 
@@ -55,11 +58,13 @@ public class LivingObject : MonoBehaviour
 
     private void Die()
     {
+        RageManager.Instance.RageAmount -= rageRemovedOnDeath;
+
         if (drop != null)
         {
             for (int i = 0; i < Random.Range(dropChance.x, dropChance.y + 1); i++)
             {
-                Drop droppedCoin = Instantiate(drop, transform.position, Quaternion.identity, DropManager.Instance.transform).GetComponent<Drop>();
+                Drop droppedCoin = Instantiate(drop, transform.position, Quaternion.identity, SpawnedObjectsManager.Instance.transform).GetComponent<Drop>();
                 DropManager.Instance.droppedCoins.Add(droppedCoin);
 
                 DropItem?.Invoke(droppedCoin);
@@ -71,8 +76,6 @@ public class LivingObject : MonoBehaviour
             BubbleManager.Instance.SpawnRandomBubble(transform.position);
         }
 
-        
-
         Death?.Invoke();
     }
 
@@ -80,8 +83,14 @@ public class LivingObject : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Despawner"))
         {
-            DespawnCollision?.Invoke();
+            LeaveSideOfScreen();
         }
+    }
+
+    private void LeaveSideOfScreen()
+    {
+        RageManager.Instance.RageAmount += rageAddedOnEscape;
+        DespawnCollision?.Invoke();
     }
 
     private void UpdateHealthBar()
