@@ -28,4 +28,14 @@ public class RageManager : MonoBehaviour
     {
         Instance = this;
     }
+
+    private void Start()
+    {
+        RunManager.Instance.EndRunReset.AddListener(ResetRage);
+    }
+
+    private void ResetRage()
+    {
+        rageAmount = 0;
+    }
 }

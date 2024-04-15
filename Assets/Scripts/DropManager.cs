@@ -22,6 +22,7 @@ public class DropManager : MonoBehaviour
     private void Start()
     {
         RunManager.Instance.EndDay.AddListener(OnEndDay);
+        RunManager.Instance.EndRun.AddListener(DeleteAllDrops);
     }
 
     private void OnEndDay()
@@ -40,5 +41,16 @@ public class DropManager : MonoBehaviour
 
         yield return new WaitUntil(() => droppedCoins.Count == 0);
         RunManager.Instance.DropsPickedUp?.Invoke();
+    }
+
+    private void DeleteAllDrops()
+    {
+        Debug.Log("Hehehaha");
+        droppedCoins.ForEach(coin =>
+        {
+            Destroy(coin.gameObject);
+        });
+
+        droppedCoins.Clear();
     }
 }
