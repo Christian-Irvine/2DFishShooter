@@ -12,8 +12,6 @@ public class Guns
 
 public class GunManager : MonoBehaviour
 {
-    [SerializeField] private List<Guns> allGuns;  
-    private List<Gun> collectedGuns = new List<Gun>();
     private bool moveGun = true;
 
     private Gun currentGun;
@@ -25,8 +23,8 @@ public class GunManager : MonoBehaviour
 
     private void StartRun()
     {
-        collectedGuns.Add(GetGunFromName("pistol"));
-        allGuns.ForEach(guns => guns.gun.gameObject.SetActive(false)); 
+        GunStatManager.Instance.CollectedGuns.Add(GetGunFromName("pistol"));
+        GunStatManager.Instance.AllGuns.ForEach(guns => guns.gun.gameObject.SetActive(false)); 
         ChangeGun(0);
     }
 
@@ -43,7 +41,7 @@ public class GunManager : MonoBehaviour
 
     private Gun GetGunFromName(string name)
     {
-        foreach (Guns guns in allGuns)
+        foreach (Guns guns in GunStatManager.Instance.AllGuns)
         {
             if (guns.name == name) return guns.gun;
         }
@@ -55,7 +53,7 @@ public class GunManager : MonoBehaviour
     private void ChangeGun(int gunIndex)
     {
         if (currentGun != null) currentGun.gameObject.SetActive(false);
-        currentGun = collectedGuns[gunIndex];
+        currentGun = GunStatManager.Instance.CollectedGuns[gunIndex];
         currentGun.gameObject.SetActive(true);
     }
 }

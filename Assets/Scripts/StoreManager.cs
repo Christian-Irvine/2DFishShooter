@@ -28,6 +28,10 @@ public class StoreManager : MonoBehaviour
     public void ChangeGun(int gunIndex)
     {
         currentGunTab = (GunType)gunIndex;
+    }
+
+    private void UpdateStoreInformation()
+    {
         
     }
 }

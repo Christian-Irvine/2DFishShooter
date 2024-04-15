@@ -16,8 +16,20 @@ public class GunStatManager : MonoBehaviour
 {
     public static GunStatManager Instance;
     //Do Not Modify This!
-    [SerializeField] private List<GunUpgrade> baseUpgrades;
-    public List<GunUpgrade> runUpgrades = new List<GunUpgrade>();
+    [SerializeField] private List<GunUpgrade> gunUpgrades;
+
+    [SerializeField] private List<Guns> allGuns;
+    public List<Guns> AllGuns
+    {
+        get { return allGuns; }
+        set { allGuns = value; }
+    }
+    private List<Gun> collectedGuns = new List<Gun>();
+    public List<Gun> CollectedGuns
+    {
+        get { return collectedGuns; }
+        set { collectedGuns = value; }
+    }
 
     private void Awake()
     {
@@ -31,7 +43,7 @@ public class GunStatManager : MonoBehaviour
 
     private void StartRun()
     {   
-        foreach (GunUpgrade upgrade in baseUpgrades)
+        foreach (GunUpgrade upgrade in gunUpgrades)
         {
             upgrade.reloadSpeed.currentUses = 0;
             upgrade.shootSpeed.currentUses = 0;

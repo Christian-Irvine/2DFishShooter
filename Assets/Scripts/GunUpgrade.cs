@@ -12,12 +12,13 @@ public class GunUpgradePart
     public int currentUses = 0;
     public float amountPerUse;
     public int baseCost;
-    public float costIncrease;
+    public float decimalCostIncrease;
 }
 
 [System.Serializable]
 public class GunUpgrade
 {
+    public GunType type;
     public GunUpgradePart reloadSpeed;
     public GunUpgradePart shootSpeed;
     public GunUpgradePart bulletDamage;
