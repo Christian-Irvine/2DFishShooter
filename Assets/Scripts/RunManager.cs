@@ -17,11 +17,12 @@ public class RunManager : MonoBehaviour
     public UnityEvent EndRun = new UnityEvent();
     public UnityEvent CoinChange = new UnityEvent();
     public UnityEvent DropsPickedUp = new UnityEvent();
+    public UnityEvent EndRunReset = new UnityEvent();
 
-    [SerializeField] private float dayStartDelay;
+    [SerializeField] private float runStartDelay;
     [SerializeField] private int daysInWeek;
 
-    [SerializeField] private Casino casino;
+    [SerializeField] private CasinoManager casino;
     [SerializeField] private Store store;
     [SerializeField] private GameObject playObjects;
 
@@ -84,17 +85,13 @@ public class RunManager : MonoBehaviour
     {
         DropsPickedUp.AddListener(OpenStore);
         EndRun.AddListener(OnEndRun);
-    }
-
-    private void OnEnable()
-    {
-        StartCoroutine(StartRun());
+        EndRunReset.AddListener(ResetRun);
     }
 
     public IEnumerator StartRun()
     {
-        Reset();
-        yield return new WaitForSeconds(dayStartDelay);
+        ResetRun();
+        yield return new WaitForSeconds(runStartDelay);
         StartNewRun?.Invoke();
         StartNextDay();
     }
@@ -119,6 +116,7 @@ public class RunManager : MonoBehaviour
     {
         yield return new WaitUntil(() => runOver);
         casino.gameObject.SetActive(true);
+        playObjects.SetActive(false);
     }
 
     public void StartNextDay()
@@ -136,7 +134,7 @@ public class RunManager : MonoBehaviour
         playObjects.SetActive(false);
     }
 
-    private void Reset()
+    private void ResetRun()
     {
         runOver = false;
         XP = 0;
