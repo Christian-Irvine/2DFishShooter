@@ -27,7 +27,7 @@ public class HubManager : MonoBehaviour
     public void StartHub()
     {
         CasinoManager.Instance.gameObject.SetActive(false);
-        Store.Instance.gameObject.SetActive(false);
+        StoreManager.Instance.gameObject.SetActive(false);
         RunManager.Instance.gameObject.SetActive(false);
         hubCanvas.SetActive(true);
     }

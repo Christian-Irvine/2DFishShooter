@@ -132,10 +132,10 @@ MonoBehaviour:
   spreadShotCount: 1
   spreadRadius: 0
   bulletDamage: 5
-  holdToShoot: 1
-  reloadTime: 1.5
+  holdToShoot: 0
+  reloadTime: 0
   chamberSize: 5
-  cooldown: 0.3
+  cooldown: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 0

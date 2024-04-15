@@ -23,7 +23,7 @@ public class RunManager : MonoBehaviour
     [SerializeField] private int daysInWeek;
 
     [SerializeField] private CasinoManager casino;
-    [SerializeField] private Store store;
+    [SerializeField] private StoreManager store;
     [SerializeField] private GameObject playObjects;
 
     private bool runOver;
