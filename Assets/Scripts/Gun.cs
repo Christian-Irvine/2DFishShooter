@@ -18,10 +18,17 @@ public class Gun : MonoBehaviour
     private float timeOfLastShot;
     private bool mouseDown;
     private int bulletsInChamber;
+    private float compoundReloadSpeed;
+    private float compoundShootCooldown;
+    private float compoundBulletDamage;
 
     private void Start()
     {
         RunManager.Instance.ChangeDay.AddListener(StartDay);
+        RunManager.Instance.StartNewRun.AddListener(StartRun);
+        compoundBulletDamage = bulletDamage;
+        compoundReloadSpeed = reloadTime;
+        compoundShootCooldown = cooldown;
     }
 
     private void Update()
@@ -42,7 +49,7 @@ public class Gun : MonoBehaviour
 
     private void TryShoot()
     {
-        if (Time.time - timeOfLastShot >= cooldown && bulletsInChamber > 0)
+        if (Time.time - timeOfLastShot >= compoundShootCooldown && bulletsInChamber > 0)
         {
             Shoot();
         }
@@ -67,9 +74,10 @@ public class Gun : MonoBehaviour
                     float distance =  Mathf.Abs(transform.position.x + transform.position.y - hitFish.transform.position.x + hitFish.transform.position.y);
 
                     //The * 5 just keeps the XP at a reasonable number
-                    float xp = (hitFish.XPMultiplier / (distance * 5) * bulletDamage);
+                    float xp = (hitFish.XPMultiplier / (distance * 5) * compoundBulletDamage);
                     RunManager.Instance.XP += xp;
-                    hitFish.Health -= bulletDamage;
+                    Debug.Log("Hit" + compoundBulletDamage);
+                    hitFish.Health -= compoundBulletDamage;
                 }
             }
         }
@@ -87,5 +95,36 @@ public class Gun : MonoBehaviour
     private void StartDay(int day)
     {
         bulletsInChamber = chamberSize;
+    }
+
+    private void StartRun()
+    {
+        compoundBulletDamage = bulletDamage;
+    }
+
+    public void SetCompoundReloadSpeed(float decimalChange, int count)
+    {
+        compoundReloadSpeed = GetCompoundValue(reloadTime, decimalChange, count);
+
+        Debug.Log("Reload " + compoundReloadSpeed);
+    }
+
+    public void SetCompoundShootSpeed(float decimalChange, int count)
+    {
+        compoundShootCooldown = GetCompoundValue(cooldown, decimalChange, count);
+
+        Debug.Log("Cooldown " + compoundShootCooldown);
+    }
+
+    public void SetCompoundBulletDamage(float decimalChange, int count)
+    {
+        compoundBulletDamage = GetCompoundValue(bulletDamage, decimalChange, count);
+
+        Debug.Log("Damage " + compoundBulletDamage);
+    }
+
+    private float GetCompoundValue(float original, float decimalChange, int count)
+    {
+        return original * Mathf.Pow(1 + decimalChange, count);
     }
 }

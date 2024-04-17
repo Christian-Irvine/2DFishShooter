@@ -15,8 +15,9 @@ public enum GunType
 public class GunStatManager : MonoBehaviour
 {
     public static GunStatManager Instance;
-    //Do Not Modify This!
+
     [SerializeField] private List<GunUpgrade> gunUpgrades;
+    public List<GunUpgrade> GunUpgrades {  get { return gunUpgrades; } }
 
     [SerializeField] private List<Guns> allGuns;
     public List<Guns> AllGuns

@@ -34,4 +34,34 @@ public class StoreManager : MonoBehaviour
     {
         
     }
+
+    public void UpgradeReloadSpeed()
+    {
+        GunStatManager.Instance.GunUpgrades[(int)currentGunTab].reloadSpeed.currentUses += 1;
+
+        float decimalIncrease = GunStatManager.Instance.GunUpgrades[(int)currentGunTab].reloadSpeed.amountPerUse;
+        int count = GunStatManager.Instance.GunUpgrades[(int)currentGunTab].reloadSpeed.currentUses;
+
+        GunStatManager.Instance.AllGuns[0].gun.SetCompoundReloadSpeed(decimalIncrease, count);
+    }
+
+    public void UpgradeShootSpeed()
+    {
+        GunStatManager.Instance.GunUpgrades[(int)currentGunTab].shootSpeed.currentUses += 1;
+
+        float decimalIncrease = GunStatManager.Instance.GunUpgrades[(int)currentGunTab].shootSpeed.amountPerUse;
+        int count = GunStatManager.Instance.GunUpgrades[(int)currentGunTab].shootSpeed.currentUses;
+
+        GunStatManager.Instance.AllGuns[0].gun.SetCompoundShootSpeed(decimalIncrease, count);
+    }
+
+    public void UpgradeDamage()
+    {
+        GunStatManager.Instance.GunUpgrades[(int)currentGunTab].bulletDamage.currentUses += 1;
+
+        float decimalIncrease = GunStatManager.Instance.GunUpgrades[(int)currentGunTab].bulletDamage.amountPerUse;
+        int count = GunStatManager.Instance.GunUpgrades[(int)currentGunTab].bulletDamage.currentUses;
+
+        GunStatManager.Instance.AllGuns[0].gun.SetCompoundBulletDamage(decimalIncrease, count);
+    }
 }
